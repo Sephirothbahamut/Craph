@@ -1,2 +1,18 @@
-﻿  Craph+++.cpp
+﻿  ast.cpp
+c1xx : warning C4199: two-phase name lookup is not supported for C++/CLI, C++/CX, or OpenMP; use /Zc:twoPhase-
+ast.cpp(144): warning C4101: 'a': unreferenced local variable
+c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\ast.cpp(17): warning C4715: 'mylang::ast::tok_type_to_var_type': not all control paths return a value
+c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\ast.cpp(96): warning C4715: 'mylang::ast::exp::un::eval': not all control paths return a value
+c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\ast.cpp(64): warning C4715: 'mylang::ast::exp::var::eval': not all control paths return a value
+  act.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   Craph+++.vcxproj -> C:\Users\Sephirothbahamut\Documents\Programming\VS\Projects\Craph+++\Debug\Craph+++.exe
+c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\craph+++.cpp(89): warning C6031: Return value ignored: '_getch'.
+c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\interpreter.cpp(143): warning C6031: Return value ignored: '_getch'.
+c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\interpreter.cpp(150): warning C6031: Return value ignored: '_getch'.
+c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\interpreter.cpp(157): warning C6031: Return value ignored: '_getch'.
+c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\interpreter.cpp(174): warning C6031: Return value ignored: '_getch'.
+c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\parser.cpp(54): warning C6031: Return value ignored: '_getch'.
+c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\parser.cpp(63): warning C6031: Return value ignored: '_getch'.
+  Running Code Analysis...
+MSBUILD : warning CA1016: Microsoft.Design : Add an AssemblyVersion attribute to 'Craph+++.exe'.
+  Code Analysis Complete -- 0 error(s), 1 warning(s)

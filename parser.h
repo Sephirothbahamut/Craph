@@ -34,6 +34,7 @@ namespace mylang
 		ast::stm::expression* stm_expression();
 		ast::stm::root* stm_declaration();
 		ast::stm::dec::root* stm_decl_var();
+		//ast::stm::dec::func* stm_decl_arr(tok::token type, tok::token name);
 		ast::stm::dec::func* stm_decl_fun(tok::token type, tok::token name);
 		ast::stm::_if* stm_if();
 		ast::stm::_while* stm_while();

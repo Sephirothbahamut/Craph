@@ -223,6 +223,9 @@ namespace mylang
 			{
 			std::string word = "";
 			word += c;
+
+
+
 			{
 			if (c == 'a')
 				{
@@ -1169,6 +1172,7 @@ namespace mylang
 
 		token tokenizer::read_num()
 			{
+			
 			bool dot = false;
 			std::string word = "";
 			word += c;
@@ -1220,7 +1224,6 @@ namespace mylang
 							{
 							case 'a': string += '\a';
 							case 'b': string += '\b';
-							case 'e': string += '\e';
 							case 'f': string += '\f';
 							case 'n': string += '\n';
 							case 'r': string += '\r';

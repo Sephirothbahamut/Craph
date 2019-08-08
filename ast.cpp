@@ -23,11 +23,8 @@ namespace mylang
 			{
 			inte::var::root * root::eval(inte::function_scope * fs) { return nullptr; }
 
-			grouping::grouping(root * exp) : exp(exp) {}
-			inte::var::root * grouping::eval(inte::function_scope * fs)
-				{
-				return exp->eval(fs);
-				}
+			grouping::grouping(root* exp) : exp(exp) {}
+			inte::var::root * grouping::eval(inte::function_scope * fs) { return exp->eval(fs); }
 			void grouping::_print(std::ostream& stream) { stream << "(" << *exp << ")"; }
 
 			void _int::_print(std::ostream& stream) { stream << val; }
@@ -67,7 +64,7 @@ namespace mylang
 				}
 
 			void un::_print(std::ostream& stream) { stream << op << *right; }
-			un::un(tok::token op, root * right) : right(right), op(op) {}
+			un::un(tok::token op, root* right) : right(right), op(op) {}
 			inte::var::root * un::eval(inte::function_scope * fs)
 				{
 				inte::var::root* r = right->eval(fs);
@@ -99,7 +96,7 @@ namespace mylang
 				}
 
 			void bin::_print(std::ostream& stream) { stream << *left << op << *right; }
-			bin::bin(root * left, tok::token op, root * right)
+			bin::bin(root* left, tok::token op, root* right)
 				: left(left), op(op), right(right) {}
 			inte::var::root * bin::eval(inte::function_scope * fs)
 				{
@@ -144,6 +141,7 @@ namespace mylang
 					}
 				else if (ll->t == inte::var::t_float && rr->t == inte::var::t_float)
 					{
+					int8_t a;
 					auto lln = static_cast<inte::var::_float*>(ll);
 					auto rrn = static_cast<inte::var::_float*>(rr);
 					
@@ -174,6 +172,7 @@ namespace mylang
 					{
 					auto lln = static_cast<inte::var::_string*>(ll);
 					auto rrn = static_cast<inte::var::_string*>(rr);
+
 					switch (op.t)
 						{
 						case tok::sum: {auto ret = new inte::var::_string(); ret->value = lln->value + rrn->value; return ret; }
@@ -200,17 +199,19 @@ namespace mylang
 
 			void call::_print(std::ostream & stream)
 				{
-				stream << fname;
-				if (args->size())
+				stream << &*fname;
+				/*if (args->size())
 					{
 					stream << " of ";
 					for (auto a : *args)
 						{
 						stream << *a << " ";
 						}
-					}
+					}*/
 				}
-			call::call(exp::root * fname, std::list<ast::exp::root*>* args, unsigned long long int line) : fname(fname), args(args), line(line) {}
+			call::call(root* fname, unsigned long long int line) : fname(fname), line(line) {}
+			void call::add_arg(root* arg) { args.push_back(arg); }
+			
 			inte::var::root * call::eval(inte::function_scope * fs)
 				{
 				inte::var::root* f = fname->eval(fs);
@@ -218,15 +219,15 @@ namespace mylang
 					{
 					//evaluate call arguments
 					std::list<inte::var::root*>* call_evaluated_args = new std::list<inte::var::root*>();
-					for (auto call_a : *args)
+					for(auto arg : args)
 						{
-						call_evaluated_args->push_back((*call_a).eval(fs));
+						call_evaluated_args->push_back(arg->eval(fs));
 						}
 
 					inte::var::fun* tmp = static_cast<inte::var::fun*>(f);
 					ast::stm::dec::func* function = tmp->function;
 					//checking arguments amoung
-					if (args->size() == function->args->size())
+					if (args.size() == function->args->size())
 						{
 						std::list<ast::stm::func_arg_decl*>::iterator ita = function->args->begin();
 						std::list<inte::var::root*>::iterator itc = call_evaluated_args->begin();
@@ -277,7 +278,7 @@ namespace mylang
 				}
 
 			void func_arg_decl::_print(std::ostream & stream) { stream << type << " " << name; }
-			func_arg_decl::func_arg_decl(tok::token type, tok::token name) : name(name), type(tok_type_to_var_type(type)) {}
+			func_arg_decl::func_arg_decl(tok::token type, bool reference, tok::token name) : type(tok_type_to_var_type(type)), reference(reference), name(name) {}
 			void func_arg_decl::exec(inte::function_scope * fs) {}
 
 			void ret::_print(std::ostream & stream) { stream << "return " << *exp << std::endl; }
@@ -392,7 +393,7 @@ namespace mylang
 					auto eval = init->eval(fs);
 					if (eval->t == type)
 						{
-						fs->alloc(name.s, eval);
+						fs->alloc(name.s, eval->copy());
 						return;
 						}
 					inte::error_var(eval, " is not of the correct type.", name.line);

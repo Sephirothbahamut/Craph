@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+      <FILENAME>interpreter.cpp</FILENAME>
+      <LINE>59</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6246</DEFECTCODE>
+    <DESCRIPTION>Local declaration of 'it' hides declaration of the same name in outer scope. For additional information, see previous declaration at line '52' of 'c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\interpreter.cpp'.</DESCRIPTION>
+    <FUNCTION>mylang::inte::function_scope::get</FUNCTION>
+    <DECORATED>?get@function_scope@inte@mylang@@$$FQAEPAVroot@var@23@PBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>50</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+        <FILENAME>interpreter.cpp</FILENAME>
+        <LINE>52</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+      <FILENAME>interpreter.cpp</FILENAME>
+      <LINE>143</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: '_getch'.</DESCRIPTION>
+    <FUNCTION>mylang::inte::error_op</FUNCTION>
+    <DECORATED>?error_op@inte@mylang@@$$FYAXVtoken@tok@2@PAVroot@var@12@11@Z</DECORATED>
+    <FUNCLINE>127</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+      <FILENAME>interpreter.cpp</FILENAME>
+      <LINE>150</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: '_getch'.</DESCRIPTION>
+    <FUNCTION>mylang::inte::error_var</FUNCTION>
+    <DECORATED>?error_var@inte@mylang@@$$FYAXPAVroot@var@12@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_K@Z</DECORATED>
+    <FUNCLINE>146</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+      <FILENAME>interpreter.cpp</FILENAME>
+      <LINE>157</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: '_getch'.</DESCRIPTION>
+    <FUNCTION>mylang::inte::error</FUNCTION>
+    <DECORATED>?error@inte@mylang@@$$FYAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_K@Z</DECORATED>
+    <FUNCLINE>153</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+      <FILENAME>interpreter.cpp</FILENAME>
+      <LINE>174</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: '_getch'.</DESCRIPTION>
+    <FUNCTION>mylang::inte::error_args</FUNCTION>
+    <DECORATED>?error_args@inte@mylang@@$$FYAXPAV?$list@PAVfunc_arg_decl@stm@ast@mylang@@V?$allocator@PAVfunc_arg_decl@stm@ast@mylang@@@std@@@std@@PAV?$list@PAVroot@var@inte@mylang@@V?$allocator@PAVroot@var@inte@mylang@@@std@@@4@_K@Z</DECORATED>
+    <FUNCLINE>160</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

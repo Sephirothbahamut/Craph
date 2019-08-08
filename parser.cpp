@@ -39,7 +39,6 @@ namespace mylang
 			}
 		return prev;
 		}
-
 	tok::token parser::consume(tok::type t, std::string err)
 		{
 		if (check(t))
@@ -54,7 +53,6 @@ namespace mylang
 		_getch();
 		exit(0);
 		}
-
 	void parser::error(std::string err)
 		{
 		std::cerr << "Parsing error at line: " << curr.line << "." << std::endl;
@@ -120,6 +118,7 @@ namespace mylang
 		tok::token type = prev;
 		tok::token name = consume(tok::type::identifier, "Expected identifier.");
 
+		//if (match({ tok::open_squar })) { return stm_decl_arr(type, name); }
 		if (match({ tok::open_round })) { return stm_decl_fun(type, name); }
 
 		ast::exp::root* initializer = nullptr;
@@ -128,6 +127,7 @@ namespace mylang
 		consume(tok::type::semicolon, "Expected ';' after variable declaration.");
 		return new ast::stm::dec::var(type, name, initializer);
 		}
+	//ast::stm::dec::arr * parser::stm_decl_fun(tok::token type, tok::token name)
 	ast::stm::dec::func * parser::stm_decl_fun(tok::token type, tok::token name)
 		{
 		std::list<ast::stm::func_arg_decl*>* args = new std::list<ast::stm::func_arg_decl*>();
@@ -139,9 +139,11 @@ namespace mylang
 				if (match({ tok::_int, tok::type::_float, tok::_string })) { type = prev; }
 				else { error("Expected argument type."); }
 
+				bool reference = match({ tok::bit_and });
+
 				tok::token name = consume(tok::identifier, "Expected argument name.");
 
-				args->push_back(new ast::stm::func_arg_decl(type, name));
+				args->push_back(new ast::stm::func_arg_decl(type, reference, name));
 				} while (match({ tok::comma }));
 			}
 		consume(tok::clos_round, "Expected ')' after arguments.");
@@ -374,19 +376,20 @@ namespace mylang
 		}
 	ast::exp::root * parser::exp_call_args(ast::exp::root* fname)
 		{
-		std::list<ast::exp::root*>* args = new std::list<ast::exp::root*>();
 		unsigned long long int line = prev.line;
+
+		auto call = new ast::exp::call(fname, line);
 		if (!check(tok::clos_round))
 			{
 			do
 				{
-				args->push_back(expression());
+				call->add_arg(expression());
 				}
 			while (match({tok::comma}));
 			}
 
 		tok::token tok = consume(tok::clos_round, "Expected ')' after function arguments.");
-		return new ast::exp::call(fname, args, line);
+		return call;
 		}
 	ast::exp::root * parser::exp_primary()
 		{

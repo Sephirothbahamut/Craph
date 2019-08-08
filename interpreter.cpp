@@ -8,18 +8,25 @@ namespace mylang
 		{
 		namespace var
 			{
-			void root::_print(std::ostream & stream) { stream << "Undefined variable"; }
+			void root::_print(std::ostream & stream) const { stream << "Undefined variable"; }
 			std::ostream & operator<<(std::ostream & stream, var::root & r) { r._print(stream); return stream; }
 			root::root(type t) : t(t) {}
 
-			void _int::_print(std::ostream & stream) { stream << "Integer (" << value << ")"; }
+			void _int::_print(std::ostream & stream) const { stream << "Integer (" << value << ")"; }
+			root * _int::copy() const { return new _int(value); }
 			_int::_int() : root(t_int) {}
-			void _float::_print(std::ostream & stream) { stream << "Float (" << value << ")"; }
+			_int::_int(int value) : root(t_int), value(value) {}
+			void _float::_print(std::ostream & stream) const { stream << "Float (" << value << ")"; }
+			root * _float::copy() const { return new _float(value); }
 			_float::_float() : root(t_float) {}
-			void _string::_print(std::ostream & stream) { stream << "String (" << value << ")"; }
+			_float::_float(float value) : root(t_int), value(value) {}
+			void _string::_print(std::ostream & stream) const { stream << "String (" << value << ")"; }
+			root * _string::copy() const { return new _string(value); }
 			_string::_string() : root(t_str) {}
+			_string::_string(std::string value) : root(t_int), value(value) {}
 
-			void fun::_print(std::ostream & stream) { stream << "Function (" << *function << ")"; }
+			void fun::_print(std::ostream & stream) const { stream << "Function (" << *function << ")"; }
+			root * fun::copy() const { return new fun(); }
 			fun::fun() : root(t_fun) {}
 			}
 
@@ -77,7 +84,11 @@ namespace mylang
 				it.first != f->args->end();
 				it.first++, it.second++)
 				{
-				alloc((*(it.first))->name.s, (*(it.second)));
+				if ((*(it.first))->reference) { alloc((*(it.first))->name.s, (*(it.second))); }
+				else
+					{
+					alloc((*(it.first))->name.s, (**(it.second)).copy());
+					}
 				}
 
 			for (auto stm : *(f->stms->stms))
@@ -85,6 +96,7 @@ namespace mylang
 				(*stm).exec(this);
 				if (retval != nullptr) { break; }
 				}
+
 			block_out();
 			return retval;
 			}

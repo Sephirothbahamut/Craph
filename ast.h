@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <list>
+#include <memory>
 #include "tok.h"
 #include "interpreter.h"
 
@@ -82,7 +83,7 @@ namespace mylang
 				{
 				private:
 					tok::token op;
-					root * right;
+					root* right;
 					void _print(std::ostream& stream);
 				public:
 					un(tok::token op, root* right);
@@ -90,8 +91,8 @@ namespace mylang
 				};
 			class bin : public root
 				{
-				private: 
-					root * left;
+				private:
+					root* left;
 					root* right;
 					tok::token op;
 					void _print(std::ostream& stream);
@@ -103,9 +104,9 @@ namespace mylang
 			class ter : public root
 				{
 				private:
-					root * first;
-					root * second;
-					root * third;
+					std::unique_ptr<root> first;
+					std::unique_ptr<root>  second;
+					std::unique_ptr<root>  third;
 					tok::token op1;
 					tok::token op2;
 					void _print(std::ostream& stream);
@@ -116,12 +117,14 @@ namespace mylang
 			class call : public root
 				{
 				private:
-					exp::root* fname;
-					std::list<ast::exp::root*>* args;
+					root* fname;
+					std::list<root*> args;
 					void _print(std::ostream& stream);
 					unsigned long long int line;
-				public: 
-					call(exp::root* fname, std::list<ast::exp::root*>* args, unsigned long long int line);
+				public:
+					call(root* fname, unsigned long long int line);
+					void add_arg(root* arg);
+
 					inte::var::root* eval(inte::function_scope* fs);
 				};
 			}
@@ -150,11 +153,12 @@ namespace mylang
 				friend class mylang::inte::function_scope;
 				friend class mylang::ast::exp::call;
 				private:
-					tok::token name;
 					inte::var::type type;
+					bool reference;
+					tok::token name;
 					void _print(std::ostream& stream);
 				public: 
-					func_arg_decl(tok::token type, tok::token name);
+					func_arg_decl(tok::token type, bool reference, tok::token name);
 					void exec(inte::function_scope* fs);
 				};
 			

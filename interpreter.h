@@ -38,8 +38,9 @@ namespace mylang
 			class root
 				{
 				private:
-					virtual void _print(std::ostream& stream);
+					virtual void _print(std::ostream& stream) const = 0;
 				public: 
+					virtual root* copy() const = 0;
 					type t;
 					root(type t);
 					friend std::ostream& operator<< (std::ostream& stream, var::root& r);
@@ -48,33 +49,41 @@ namespace mylang
 			class _int : public root
 				{
 				private:
-					void _print(std::ostream& stream);
+					void _print(std::ostream& stream) const override;
 				public:
+					root * copy() const override;
 					long int value;
 					_int();
+					_int(int value);
+
 				};
 			class _float : public root
 				{
 				private:
-					void _print(std::ostream& stream);
+					void _print(std::ostream& stream) const override;
 				public:
+					root * copy() const override;
 					double value;
 					_float();
+					_float(float value);
 				};
 			class _string : public root
 				{
 				private:
-					void _print(std::ostream& stream);
+					void _print(std::ostream& stream) const override;
 				public:
+					root * copy() const override;
 					std::string value;
 					_string();
+					_string(std::string value);
 				};
 
 			class fun : public root
 				{
 				private:
-					void _print(std::ostream& stream);
-				public: 
+					void _print(std::ostream& stream) const override;
+				public:
+					root * copy() const override;
 					ast::stm::dec::func* function;
 					fun();
 				};

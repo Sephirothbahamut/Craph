@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+      <FILENAME>parser.cpp</FILENAME>
+      <LINE>54</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: '_getch'.</DESCRIPTION>
+    <FUNCTION>mylang::parser::consume</FUNCTION>
+    <DECORATED>?consume@parser@mylang@@$$FAAE?AVtoken@tok@2@W4type@42@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>43</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+      <FILENAME>parser.cpp</FILENAME>
+      <LINE>63</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: '_getch'.</DESCRIPTION>
+    <FUNCTION>mylang::parser::error</FUNCTION>
+    <DECORATED>?error@parser@mylang@@$$FAAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>58</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+      <FILENAME>parser.cpp</FILENAME>
+      <LINE>138</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>6246</DEFECTCODE>
+    <DESCRIPTION>Local declaration of 'type' hides declaration of the same name in outer scope. For additional information, see previous declaration at line '131' of 'c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\parser.cpp'.</DESCRIPTION>
+    <FUNCTION>mylang::parser::stm_decl_fun</FUNCTION>
+    <DECORATED>?stm_decl_fun@parser@mylang@@$$FAAEPAVfunc@dec@stm@ast@2@Vtoken@tok@2@0@Z</DECORATED>
+    <FUNCLINE>131</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+        <FILENAME>parser.cpp</FILENAME>
+        <LINE>131</LINE>
+        <COLUMN>55</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+      <FILENAME>parser.cpp</FILENAME>
+      <LINE>144</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>6246</DEFECTCODE>
+    <DESCRIPTION>Local declaration of 'name' hides declaration of the same name in outer scope. For additional information, see previous declaration at line '131' of 'c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\parser.cpp'.</DESCRIPTION>
+    <FUNCTION>mylang::parser::stm_decl_fun</FUNCTION>
+    <DECORATED>?stm_decl_fun@parser@mylang@@$$FAAEPAVfunc@dec@stm@ast@2@Vtoken@tok@2@0@Z</DECORATED>
+    <FUNCLINE>131</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\sephirothbahamut\documents\programming\vs\projects\craph+++\craph+++\</FILEPATH>
+        <FILENAME>parser.cpp</FILENAME>
+        <LINE>131</LINE>
+        <COLUMN>72</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>
